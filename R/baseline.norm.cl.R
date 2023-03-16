@@ -57,6 +57,7 @@ baseline.norm.cl <- function(norm.mat.smooth, min.cells=5, n.cores=n.cores){
   }else {
     WNS <- ""
   }
+  #6个cluster中，找到内部变异度最小的一个cluster,即认为是正常2倍体细胞。
     basel <- apply(norm.mat.smooth[, which(ct %in% which(SDM==min(SDM)))], 1, median)
     preN <- colnames(norm.mat.smooth)[which(ct %in% which(SDM==min(SDM)))]
 
