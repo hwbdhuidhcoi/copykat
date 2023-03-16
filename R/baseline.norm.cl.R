@@ -35,6 +35,7 @@ baseline.norm.cl <- function(norm.mat.smooth, min.cells=5, n.cores=n.cores){
 
     data.c <- apply(norm.mat.smooth[, which(ct==i)],1, median)
     sx <- max(c(0.05, 0.5*sd(data.c)))
+     #其实是在每个cluster中将基因中位数，分为low，normal和high3种
     GM3 <- mixtools::normalmixEM(data.c, lambda = rep(1,3)/3, mu = c(-0.2, 0, 0.2), sigma = sx,arbvar=FALSE,ECM=FALSE,maxit=5000)
     SDM <- c(SDM, GM3$sigma[1])
     SSD <- c(SSD, sd(data.c))
